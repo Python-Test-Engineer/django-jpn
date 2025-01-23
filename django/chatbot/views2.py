@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 
 from openai import OpenAI
-
+import openai
 from .models import Chat
 from dotenv import load_dotenv, find_dotenv
 
@@ -16,11 +16,63 @@ load_dotenv(find_dotenv())
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 print(f"OPENAI_API_KEY: {OPENAI_API_KEY}")  # Print the value of
-print(f"GROQ_API_KEY: {GROQ_API_KEY}")
+print(f"GROQ_API_KEY: {GROQ_API_KEY}")  # Print the value of
 
 openai_api_key = OPENAI_API_KEY
-client = OpenAI(api_key=openai_api_key)
-# Print the value of
+# client = OpenAI(api_key=openai_api_key)
+client = openai.OpenAI(
+    base_url="https://api.groq.com/openai/v1",
+    api_key=GROQ_API_KEY,
+)
+
+
+def ask_groq(message):
+
+    # original prompt
+    system_message = """
+    You are an assistant that is great at telling jokes.
+    """
+
+    # Here is where we can do some prompt engineering - we are adding to the system message
+    prompt_engineering = """
+    A joke worthy of publishing is a joke that has a rating of 8.5/10 or above.
+
+    If the joke is worthy of publishing also include next: PUBLISH otherwise next: RETRY
+
+    Here is an example of a joke worth of publishing:
+    Supply the response in the following JSON format:
+    {"setup": "The setup of the joke",
+    "punchline": "The punchline of the joke",   
+    "rating": "9.0",
+    "next": "PUBLISH"
+    }
+
+    Remove all back ticks and other unnecessary characters and just print the JSON format and nothing else.
+
+    Please ensure jokes are not repeated on retries
+
+    Thank you.
+
+    """
+
+    system_message += prompt_engineering
+
+    user_prompt = "Tell a light-hearted joke for an audience of Pythonistas"
+    prompts = [
+        {"role": "system", "content": system_message},
+        {"role": "user", "content": user_prompt},
+    ]
+    response = client.chat.completions.create(
+        messages=[
+            {
+                "role": "user",
+                "content": "Explain the importance of fast language models",
+            }
+        ],
+        model="llama-3.3-70b-versatile",
+    )
+    answer = response.choices[0].message.content.strip()
+    return answer
 
 
 def ask_openai(message):
@@ -36,12 +88,11 @@ def ask_openai(message):
             {"role": "user", "content": message},
         ],
     )
-    answer = response.choices[0].message.content.strip()
-    return answer
 
 
 # Create your views here.
 def index(request):
+
     return render(request, "home.html")
 
 
