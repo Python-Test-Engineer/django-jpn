@@ -15,39 +15,51 @@ import openai
 
 # OTHER
 from dotenv import load_dotenv, find_dotenv
+from rich.console import Console
+
+console = Console()
 
 load_dotenv(find_dotenv())
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-print(f"OPENAI_API_KEY: {OPENAI_API_KEY}")  # Print the value of
-print(f"GROQ_API_KEY: {GROQ_API_KEY}")
-
-LLM = "GROQ"
-
-if LLM == "GROQ":
-    client = openai.OpenAI(
-        base_url="https://api.groq.com/openai/v1",
-        api_key=GROQ_API_KEY,
-    )
-    MODEL = "llama-3.3-70b-versatile"
-
-if LLM == "OPENAI":
-    client = OpenAI(api_key=OPENAI_API_KEY)
-    MODEL = "gpt-3.5-turbo"
-
-# Print the value of
+console.print(f"[dark_orange]OPENAI_API_KEY: {OPENAI_API_KEY}[/]")
+print()
+console.print(f"[cyan]GROQ_API_KEY: {GROQ_API_KEY}[/cyan]")
 
 
 def ask_openai(message):
+    client = OpenAI(api_key=OPENAI_API_KEY)
     response = client.chat.completions.create(
-        # model="gpt-3.5-turbo",
-        model=MODEL,
+        model="gpt-3.5-turbo",
+        # model=MODEL,
         # prompt = message,
         # max_tokens=150,
         # n=1,
         # stop=None,
         # temperature=0.7,
+        messages=[
+            {"role": "system", "content": "You are an helpful assistant."},
+            {"role": "user", "content": message},
+        ],
+    )
+    answer = response.choices[0].message.content.strip()
+    return answer
+
+
+def ask_groq(message):
+    # GROQ
+    client = openai.OpenAI(
+        base_url="https://api.groq.com/openai/v1",
+        api_key=GROQ_API_KEY,
+    )
+    response = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        # prompt = message,
+        # max_tokens=150,
+        # n=1,
+        # stop=None,
+        temperature=0.7,
         messages=[
             {"role": "system", "content": "You are an helpful assistant."},
             {"role": "user", "content": message},
@@ -78,6 +90,24 @@ def chatbot(request):
         chat.save()
         return JsonResponse({"message": message, "response": response})
     return render(request, "chatbot.html", {"chats": chats})
+
+
+def chatbot_groq(request):
+    chats = Chat.objects.filter(user=request.user)
+
+    if request.method == "POST":
+        message = request.POST.get("message")
+        response = ask_groq(message)
+
+        chat = Chat(
+            user=request.user,
+            message=message,
+            response=response,
+            created_at=timezone.now,
+        )
+        chat.save()
+        return JsonResponse({"message": message, "response": response})
+    return render(request, "chatbot_groq.html", {"chats": chats})
 
 
 def login(request):
