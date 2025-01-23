@@ -20,6 +20,11 @@ print(f"GROQ_API_KEY: {GROQ_API_KEY}")
 
 openai_api_key = OPENAI_API_KEY
 client = OpenAI(api_key=openai_api_key)
+
+# client = openai.OpenAI(
+#     base_url="https://api.groq.com/openai/v1",
+#     api_key=GROQ_API_KEY,
+# )
 # Print the value of
 
 
