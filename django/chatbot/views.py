@@ -1,15 +1,20 @@
+# SYSTEM
 import os
+
+# DJANGO
 from django.contrib import auth
 from django.utils import timezone
 from django.http import JsonResponse
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-
-from openai import OpenAI
-
 from .models import Chat
-from dotenv import load_dotenv, find_dotenv
 
+# LLM
+from openai import OpenAI
+import openai
+
+# OTHER
+from dotenv import load_dotenv, find_dotenv
 
 load_dotenv(find_dotenv())
 
@@ -18,19 +23,26 @@ GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 print(f"OPENAI_API_KEY: {OPENAI_API_KEY}")  # Print the value of
 print(f"GROQ_API_KEY: {GROQ_API_KEY}")
 
-openai_api_key = OPENAI_API_KEY
-client = OpenAI(api_key=openai_api_key)
+LLM = "GROQ"
 
-# client = openai.OpenAI(
-#     base_url="https://api.groq.com/openai/v1",
-#     api_key=GROQ_API_KEY,
-# )
+if LLM == "GROQ":
+    client = openai.OpenAI(
+        base_url="https://api.groq.com/openai/v1",
+        api_key=GROQ_API_KEY,
+    )
+    MODEL = "llama-3.3-70b-versatile"
+
+if LLM == "OPENAI":
+    client = OpenAI(api_key=OPENAI_API_KEY)
+    MODEL = "gpt-3.5-turbo"
+
 # Print the value of
 
 
 def ask_openai(message):
     response = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        # model="gpt-3.5-turbo",
+        model=MODEL,
         # prompt = message,
         # max_tokens=150,
         # n=1,
