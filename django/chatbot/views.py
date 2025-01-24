@@ -27,19 +27,29 @@ console.print(f"[dark_orange]OPENAI_API_KEY: {OPENAI_API_KEY}[/]")
 print()
 console.print(f"[cyan]GROQ_API_KEY: {GROQ_API_KEY}[/cyan]")
 
+# We add in our own system message
+system_message = "You are a helpful assistant for a shoe store. If a user asks a question please be as helpful as possible and use a courteous and professional manner. You are provided with the following facts to help you. Please be verbose and suggestive."
+
+# We add our own supplementary facts, this is RAG in that we are AUGMENTING our GENERATION through the use of RETRIEVAL - in this case it is a list but this wouldbe obtained from DB queries etc...
+FAQ = [
+    "We only sell shoes.",
+    "Our opening hours are Monday to Friday from 9am to 5pm.",
+    "We are located at 123 Main Street, Brighton",
+    "We specialise in red shoes but have all colours",
+    "Our VAT rate is 20 percent and is applicable on all sales",
+    "We only accept card payments",
+]
+
+# Create the base system message
+system_message += "\n" + "\n".join(FAQ)
+
 
 def ask_openai(message):
     client = OpenAI(api_key=OPENAI_API_KEY)
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
-        # model=MODEL,
-        # prompt = message,
-        # max_tokens=150,
-        # n=1,
-        # stop=None,
-        # temperature=0.7,
         messages=[
-            {"role": "system", "content": "You are an helpful assistant."},
+            {"role": "system", "content": system_message},
             {"role": "user", "content": message},
         ],
     )
@@ -55,11 +65,6 @@ def ask_groq(message):
     )
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
-        # prompt = message,
-        # max_tokens=150,
-        # n=1,
-        # stop=None,
-        temperature=0.7,
         messages=[
             {"role": "system", "content": "You are an helpful assistant."},
             {"role": "user", "content": message},
@@ -72,6 +77,25 @@ def ask_groq(message):
 # Create your views here.
 def index(request):
     return render(request, "home.html")
+
+
+def faq(request):
+
+    chats = Chat.objects.filter(user=request.user)
+
+    if request.method == "POST":
+        message = request.POST.get("message")
+        response = ask_groq(message)
+
+        chat = Chat(
+            user=request.user,
+            message=message,
+            response=response,
+            created_at=timezone.now,
+        )
+        chat.save()
+        return JsonResponse({"message": message, "response": response})
+    return render(request, "chatbot.html", {"chats": chats})
 
 
 def chatbot(request):
