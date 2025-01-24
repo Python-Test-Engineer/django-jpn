@@ -19,6 +19,7 @@ from rich.console import Console
 
 console = Console()
 
+# Load in our API keys
 load_dotenv(find_dotenv())
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
@@ -44,6 +45,7 @@ FAQ = [
 system_message += "\n" + "\n".join(FAQ)
 
 
+# Helper function for OpenAI calls
 def ask_openai(message):
     client = OpenAI(api_key=OPENAI_API_KEY)
     response = client.chat.completions.create(
@@ -57,6 +59,7 @@ def ask_openai(message):
     return answer
 
 
+# Helper function for GROQ calls
 def ask_groq(message):
     # GROQ
     client = openai.OpenAI(
@@ -74,28 +77,9 @@ def ask_groq(message):
     return answer
 
 
-# Create your views here.
+# Test
 def index(request):
     return render(request, "home.html")
-
-
-def faq(request):
-
-    chats = Chat.objects.filter(user=request.user)
-
-    if request.method == "POST":
-        message = request.POST.get("message")
-        response = ask_groq(message)
-
-        chat = Chat(
-            user=request.user,
-            message=message,
-            response=response,
-            created_at=timezone.now,
-        )
-        chat.save()
-        return JsonResponse({"message": message, "response": response})
-    return render(request, "chatbot.html", {"chats": chats})
 
 
 def chatbot(request):
