@@ -33,7 +33,7 @@ index = pc.Index(index_name)
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 print("----------------")
 print(f"openai api key: {OPENAI_API_KEY}")
-embeddings = OpenAIEmbeddings(model="text-embedding-3-large",api_key=OPENAI_API_KEY)
+embeddings = OpenAIEmbeddings(model="text-embedding-3-large", api_key=OPENAI_API_KEY)
 
 vector_store = PineconeVectorStore(index=index, embedding=embeddings)
 
@@ -108,5 +108,9 @@ vector_store.delete(ids=[uuids[-1]])
 
 results = vector_store.similarity_search_with_score(
     "Will it be hot tomorrow?", k=1, filter={"source": "news"}
+)
+print(results)
+results = vector_store.similarity_search_with_score(
+    "Building an exciting new project with LangChain", k=2, filter={"source": "tweet"}
 )
 print(results)
