@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>AI Chatbot</title>
+    <script
+      src="https://unpkg.com/htmx.org@1.9.4"
+      integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      /* Style for the loading spinner */
+      .my-indicator {
+        display: none;
+        border: 2px solid #f3f3f3;
+        border-top: 2px solid #3498db;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        animation: spin 0.5s linear infinite;
+      }
+      .htmx-request .my-indicator {
+        display: inline-block;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .user-message {
+        color: rgb(7, 63, 41);
+
+        padding: 5px;
+      }
+      .bot-message {
+        padding: 5px;
+        color: darkblue;
+      }
+      input[type="text"] {
+        border: 2px solid green;
+        width: 700px;
+        margin-top: 20px;
+        margin-bottom: 70px;
+        padding: 10px 20px;
+        font-size: 20px;
+      }
+      #container {
+        width: 800px;
+        height: 100vh;
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .send-button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        background-color: #4caf50;
+        color: #fff;
+        font-size: 16px;
+        font-family: Arial, sans-serif;
+        cursor: pointer;
+      }
+
+      .send-button:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="chatbox">
+        {% for message in messages %}
+        <div class="user-message">
+          <em>User</em>: {{ message.user_message }}
+        </div>
+        <div class="bot-message">Bot: {{ message.bot_message }}</div>
+        {% endfor %}
+        <button type="submit">Send</button>
+      </div>
+
+      <form
+        hx-post="{% url 'chat_view' %}"
+        hx-target="#container"
+        hx-swap="innerHTML"
+      >
+        {% csrf_token %}
+        <div class="my-indicator"></div>
+        <div class="input-fields">
+          <input type="text" name="message" />
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

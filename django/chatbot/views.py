@@ -88,6 +88,7 @@ def chatbot(request):
     if request.method == "POST":
         message = request.POST.get("message")
         response = ask_openai(message)
+        # response = ask_groq(message)
 
         chat = Chat(
             user=request.user,
