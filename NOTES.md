@@ -1,8 +1,10 @@
 # Welcome
 <!-- https://mconverter.eu/convert/markdown/html/ -->
-Implementing Agentic AI Solutions in Python from scratch
+Implementing Agentic AI Solutions in Django from scratch
 
-The repo is here: https://github.com/Python-Test-Engineer/conf42-ai-agents
+The repo is here: 
+
+https://github.com/Python-Test-Engineer/django-jpn
 
 
 <br>
@@ -80,9 +82,11 @@ What if AI Agents were 'just' Python code with a REST API call, admittedly a ver
 
 Then, we would use day to day Python design patterns to handle the responses we get back from the AI Agent and move on to the next step.
 
-This is the main focus of the talk - demystify and simplify - and not to focus on an actual real workd application.
+This is the main focus of the talk - demystify and simplify - and not to focus on an actual real world application.
 
 With that in mind, we don't need to fully grasp the code this time around. It is more about see the high level view and once can dig deeper into the code offline.
+
+We will use Notebooks to explore AI Agents and then we will see an implementation of an AI Agent in Django, using the same code. It is the same code that produces the same output for us to use in our Django App. There is not extra 'wiring' involved.
 
 ## 180 degrees
 
@@ -96,6 +100,10 @@ There are 3 areas concerning this.
 1. Client side creation of endpoints (APIs) rather than server side prebuilt endpoints.
 2. Use of Natural/Human Language, in my case English to create the code.
 3. Autonomy - the LLM directs the flow of the app.
+
+For the purpose of this talk I will use the term `function` in the mathematical sense of input -> function(input) -> output that can then be passed into another function to give chaining.
+
+The `function` might be a Python function or a class. It is for demo purposes code that takes in input and returns output.
 
 Before we go into some code examples, we will refresh ourselves that a REST API a request is sending a payload of data to a server and then the server returns a response. This is a very simple example of a REST API. 
 
@@ -112,6 +120,7 @@ headers = {
     "Authorization": f"Bearer {api_key}",
 }
 
+# payload may vary from LLM Organisation but it is a text string.
 payload = {
    "model": model,
    "messages": [
@@ -133,9 +142,7 @@ response = requests.post(
 
 The request is a string of characters and does not contain any objects or other data types.
 
-In Python we stringify the data with json.dumps() and in JS it is common to use json.stringify() to send the request.
-
-Likewise, we get a string response.
+Likewise, we get a string response. We pass some text to a function and get some text back.
 
 We will look at `01_openai_api_with_requests.ipynb` to see an example of getting a response from the LLM.
 
@@ -163,11 +170,13 @@ We can see this in `02_api.ipynb` where we pass a system prompt and then a promp
 
 This is effectively a new route for the API, but instead of it being coded on the server side by someone, it is coded on the client side, sent with the payload AND the code is NATURAL LANGUAGE.
 
-In the early days of ChatGPT, *prompt engineering* was often demoed as hacks or tricks. Nowdays, it seems far more structured and different LLMs use different schemas.
+In the early days of ChatGPT, *prompt engineering* was often shownd as hacks or tricks. Nowdays, it seems far more structured and different LLMs use different schemas.
+
+(Current models are 'Imperative' in that we say what they are, what they do, how they do it...New REASONING models are 'Declarative' in that we say what we want them to do - the goal - what we want as output and what we might not want. The model then 'reasons' its way through the task.)
 
 We can think of it as pseudo-code which we may write whilst developing an app.
 
-In fact, it is like a person starting a new job. They will get a handbook of what the job involves, how to do it etc. and this is what we are doing with the LLM. 
+In fact, it is like a person starting a new job. They will get a handbook of what the job involves, how to do it etc. and this is what we are doing with the LLM. `sample_prompt.md` is an example of this and how we could import content from a Markdown file.
 
 We set the system prompt to guide the AI agent, and then the prompt to create the endpoint.
 
@@ -185,21 +194,21 @@ In summary, this module has shown the 3 counter-intuitive steps of AI Agents - A
 
 # FAQ/ROUTER
 
-Sometimes we might think that AI Development is binary - it is fully AI or not.
+Sometimes we might think that AI Development is binary - it is fully AI or not. 
 
 What if we can include 'a bit of AI' in our App? Remember, AI Agents are snippets of code that make a request and get a response.
 
-If we have a Search, FAQ or Help section, we can leverage the power of the AI Agent to create a facility to process Natural Language. Getting information from a form, (excluding text fields), give us structured inout data.
+If we have a Search, FAQ or Help section, we can leverage the power of the AI Agent to create a facility to process Natural Language. Getting information from a form, (excluding text fields), give us structured input data and one text field may be used for the query as natural language input to be resolved by the AI Agent.
 
-Let's look at `03_faq.ipynb` for a simple example.
+Let's look at `03_faq.ipynb` for a simple example. (We will see this in our Django demo and it is a view receiving some text and processing it to give text back to the user via a view).
 
-I am using Gradio as a UI for this example and we can see that we have some data in the FAQ list.
+I am using Gradio as a UI for this example notebook and we can see that we have some data in the FAQ list.
 
 Obviously, this can be more involved and use structured inputs from associated form fields, but for now lets assume that we have extracted the relevant information. 
 
-This highlights an important point that we don't need to use LLMs for Agents. If we can get structured data from a form, then it is more deterministic to do so. LLMs are very useful for converting Natural Language inputs to structured data.
+This highlights an important point that we don't need to use LLMs for Agents. If we can get structured data from a form, then it is more deterministic and better. LLMs are very useful for converting Natural Language inputs to structured data.
 
-This is RAG or Retrieval Augmented Generation, where we 'augment' the query with the relevant data and then the LLM 'generates' the response based on the query, the data and the prompt. We tend to see RAG with vector databases and semantic search but RAG is essentially augmenting the LLM with our own data to 'train' it or 'fine tune'.
+This is RAG or Retrieval Augmented Generation, where we 'augment' the query with the relevant data that the model was not trained on and then the LLM 'generates' the response based on the query, the data and the prompt. We tend to see RAG with vector databases and semantic search but RAG is essentially augmenting the LLM with our own data to 'train' it or 'fine tune'.
 
 We can see that we can create a powerful AI Agent that can answer questions based on the data in the FAQ list.
 
@@ -225,21 +234,35 @@ We have not yet seen a multi agent scenario but I would describe this as everyda
 
 We will take a look at this later.
 
-I think we can see that what we call these things - Agents, Tools, Routers - is quite arbitrary and merely a convenience for what works for us. At the end of the day, everything in Python is an OBJECT, so we can use whatever we want.
+I think we can see that what we call these things - Agents, Tools, Routers, functions - is quite arbitrary and merely a convenience for what works for us. At the end of the day, everything in Python is an OBJECT, so we can use whatever we want.
 
 # Tools
 
-`05_tools.ipynb` shows not just how we define tools but also how an Agent can decide which one to use.
+AI Agents may need to get extra information by running functions. This is called 'tool calling'.
+
+We can get the LLM to not just select a tool but also extract the arguments. We will see information extraction in `06_information_extraction.ipynb`.
+
+`05_tools.ipynb` shows not just how we define tools but also how an Agent can decide which one to use, as well as the arguments for the function.
 
 It will then send back the function name and arguments for us to run and then return the result.
 
-Where is it run?
+*Where is it run?*
 
 ## From OpenAI website
 
 Function is run on our 'box' - we continue to add messages to our list of messages and send them to the LLM.
 
 ![open-ai](./images/where-tools-are-executed.png)
+
+# Data extraction
+
+We can use the LLM to extract data from a document. This is called 'information extraction'. We will see this in `06_information_extraction.ipynb`. 
+
+![ESSENCE](./ESSENCE.png)
+
+I bring this up again as I came across this extraction pattern in an example of 'Teachable Agents'. This sounded very futuristic but looking at the code, it is information extraction that can be stored in short term memory - app level cache - or long term menory - stored in a DB for example and retrieved as needed and added to the SYSTEM MESSAGE.
+
+Examples show this for data pipelines, however, if it were part of an invoicing process one would more likely have the information stored rather than in a prepared document.
 
 
 # 4 main patterns
