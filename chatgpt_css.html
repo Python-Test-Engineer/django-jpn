@@ -39,6 +39,10 @@
             font-size: 18px;
             border-bottom: 1px solid #4f4f4f;
         }
+
+        #submit {
+            margin-top: 15px
+        }
     </style>
 </head>
 
@@ -47,31 +51,9 @@
         <h1>ChatGPT Clone</h1>
         <input type="text" class="chat-input" id="prompt" placeholder="Ask me a question...">
         <button class="btn btn-primary" id="submit">Submit</button>
-        <div id="responses"></div>
+        <div class="chat-response" id="response"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/htmx.org@1.7.0/dist/htmx.min.js"></script>
-    <script>
-        const submitButton = document.getElementById('submit');
-        const promptInput = document.getElementById('prompt');
-        const responsesDiv = document.getElementById('responses');
-
-        submitButton.addEventListener('click', () => {
-            const prompt = promptInput.value;
-            htmx.ajax('POST', '{% url 'chat_view' %}', {
-                'prompt': prompt
-            })
-                .then(response => {
-                    const responseText = response.response;
-                    const responseHTML = `<div class="chat-response">${responseText}</div>`;
-                    responsesDiv.innerHTML += responseHTML;
-                    promptInput.value = '';
-                })
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-    </script>
 </body>
 
 </html>
