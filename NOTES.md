@@ -40,11 +40,11 @@ and I also enjoy working in community kitchens and partner dancing.
 
 Just got a Red Fox Labrador Pup Leo, (much earlier than planned):
 
-![Leo](./images/leo-carrot.png)
+<img src="./images/leo-main.png" width="300px" >
 
 We have a local red fox that is apt to follow us...
 
-<img src="./images/leo-fox-2.png" width="400" >
+<img src="./images/leo-fox-2.png" width="200px" >
 
 ### My first computer 1979
 
