@@ -124,11 +124,14 @@ def loop(max_iterations=10, query: str = ""):
         result = agent(next_prompt)
         # -------------------------
         if "ACTION" in result:
+            # extract function and arguments
 
             next = result.split("|")
             print(next)
             next_function = next[2].strip()
             next_arg = str(next[3]).strip()
+
+            # if a tool/function exists - run it and prepend with OBSERVATION as we descrbed in system prompt
 
             if next_function in tools:
                 result_tool = eval(f"{next_function}('{next_arg}')")
@@ -138,6 +141,8 @@ def loop(max_iterations=10, query: str = ""):
             else:
                 next_prompt = "OBSERVATION: Tool not found"
             continue
+
+        # if we have a final ANSWER, store it and break out of loop
 
         if "ANSWER" in result:
             # the result at top has final result
