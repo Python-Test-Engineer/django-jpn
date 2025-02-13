@@ -72,7 +72,7 @@ There are many definitions:
 
 We will look at examples of code to see what AI Agents are and what they can do.
 
-If we look at https://aiagentsdirectory.com/landscape we can see that there are many examples of AI Agent Frameworks and they seem to increase each week.
+If we look at [https://aiagentsdirectory.com/landscape](https://aiagentsdirectory.com/landscape) we can see that there are many examples of AI Agent Frameworks and they seem to increase each week.
 
 ## Aim
 
