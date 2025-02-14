@@ -1,6 +1,7 @@
 # Welcome
 <!-- https://mconverter.eu/convert/markdown/html/ -->
-Implementing Agentic AI Solutions in Django from scratch
+
+<img src="craig-west-intro-card.png" width="600px">
 
 The repo is here: 
 
