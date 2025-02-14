@@ -4,15 +4,23 @@ Implementing Agentic AI Solutions in Django from scratch
 
 The repo is here: 
 
-https://github.com/Python-Test-Engineer/django-jpn
+[https://pytest-cookbook.com/](https://pytest-cookbook.com/)
+
+or
+
+[https://github.com/Python-Test-Engineer/django-jpn](https://github.com/Python-Test-Engineer/django-jpn)
 
 
 <br>
-And I will be using NOTES.md/NOTES.html for this talk along with code and the talk will be mostly code walkthroughs.
+And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me.
+
+The talk will be mostly code walkthroughs with notebooks that have a lot of comments for clarification.
 
 ## Who am I?
 
 **I am one of *US* - a regular Pythonista.**
+
+Wrestling and getting to grips with these new technologies.
 
 I was in tech in the early 2000s as a Business Information Architect and Certified MicroSoft SQL Server DBA. I returned in 2017 via WordPress and JavaScript Frameworks, moving to Python and ML in 2021.
 
@@ -80,9 +88,9 @@ What I would like to achieve in this talk is to demystify AI Agents and AI Progr
 
 What if AI Agents were 'just' Python code with a REST API call, admittedly a very magical API?
 
-Then, we would use day to day Python design patterns to handle the responses we get back from the AI Agent and move on to the next step.
+Then, we would use day to day Python design patterns to handle the responses we get back from the AI Agent and move on to the next step. Business as usual as Python/Django developers.
 
-This is the main focus of the talk - demystify and simplify - and not to focus on an actual real world application.
+This is the main focus of the talk - demystify and simplify - and this will enable you to construct workflows using AI Agents.
 
 With that in mind, we don't need to fully grasp the code this time around. It is more about see the high level view and once can dig deeper into the code offline.
 
