@@ -4,14 +4,20 @@
 <head>
   <meta charset="UTF-8" />
   <title>AI Chatbot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
   <script src="https://unpkg.com/htmx.org@1.9.4"
     integrity="sha384-zUfuhFKKZCbHTY6aRR46gxiqszMk5tcHjsVFxnUo8VMus4kHGVdIYVbOYYNlKmHV"
     crossorigin="anonymous"></script>
   <style>
     body {
-      font-size: x-large;
-
-      background-color: rgb(171, 169, 166);
+      font-family: Raleway, sans-serif;
+      font-size: 24px;
+      background-color: #2f2f2f;
+      color: #ffffff;
     }
 
     /* Style for the loading spinner */
@@ -40,14 +46,15 @@
     }
 
     .user-message {
-      color: rgb(32, 30, 29);
+      color: rgb(232, 228, 226);
 
       padding: 5px;
     }
 
     .bot-message {
       padding: 5px;
-      color: darkblue;
+      color: #ffffff;
+      ;
     }
 
     input[type="text"] {
@@ -60,22 +67,22 @@
     }
 
     #container {
+
       width: 800px;
       height: 100vh;
-      margin: 0 auto;
+      margin: 10px auto;
       padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-
     }
 
     .send-button {
       padding: 10px 20px;
       border: none;
       border-radius: 5px;
-      background-color: #4caf50;
+      background-color: #4c75af;
       color: #fff;
       font-size: 16px;
       font-family: Arial, sans-serif;
@@ -85,6 +92,15 @@
     .send-button:hover {
       background-color: #3e8e41;
     }
+
+    ::placeholder {
+      color: #666;
+      /* placeholder text color */
+      font-size: 22px;
+      /* placeholder font size */
+      font-style: italic;
+      /* placeholder font style */
+    }
   </style>
 </head>
 
@@ -93,18 +109,20 @@
     <div id="chatbox">
       {% for message in messages %}
       <div class="user-message">
-        <em>User</em>: {{ message.user_message }}
+        <span style="font-weight: bold;color: orange;">User:</span> {{ message.user_message }}
       </div>
-      <div class="bot-message">Bot: {{ message.bot_message }}</div>
+      <div class="bot-message"><span style="font-weight: bold;color: rgb(99, 227, 99);">Assistant:</span>
+        {{ message.bot_message }}
+      </div>
       {% endfor %}
-      <button type="submit">Send</button>
+      <!-- <button type="submit">Send</button> -->
     </div>
 
     <form hx-post="{% url 'chat_view' %}" hx-target="#container" hx-swap="innerHTML">
       {% csrf_token %}
       <div class="my-indicator"></div>
       <div class="input-fields">
-        <input type="text" name="message" />
+        <input type="text" name="message" placeholder="Ask me a question... " />
       </div>
     </form>
   </div>
