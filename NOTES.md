@@ -219,7 +219,7 @@ There are many software design patterns but essentially the next step in the app
 
 In summary, this module has shown the 3 counter-intuitive steps of AI Agents - Autonomy, Client Side Creation of the route and the use of Natural Language.
 
-# FAQ/ROUTER
+# FAQ
 
 Sometimes we might think that AI Development is binary - it is fully AI or not. 
 
@@ -238,6 +238,9 @@ This highlights an important point that we don't need to use LLMs for Agents. If
 This is RAG or Retrieval Augmented Generation, where we 'augment' the query with the relevant data that the model was not trained on and then the LLM 'generates' the response based on the query, the data and the prompt. We tend to see RAG with vector databases and semantic search but RAG is essentially augmenting the LLM with our own data to 'train' it or 'fine tune'.
 
 We can see that we can create a powerful AI Agent that can answer questions based on the data in the FAQ list.
+
+
+## ROUTER
 
 We can further extend this to be a type of ROUTER or *if/else* statement to provide a sense of autonomy to the app - it will direct the flow of the app. We can have 'Human in the Loop' at any stage so that we restrict the flow to approved paths.
 
