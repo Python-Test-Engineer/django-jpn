@@ -1,4 +1,3 @@
-# Welcome
 <!-- https://mconverter.eu/convert/markdown/html/ -->
 
 <img src="craig-west-intro-card.png" width="600px">
@@ -25,7 +24,7 @@ Wrestling and getting to grips with these new technologies.
 
 I was in tech in the early 2000s as a Business Information Architect and Certified MicroSoft SQL Server DBA. I returned in 2017 via WordPress and JavaScript Frameworks, moving to Python and ML in 2021.
 
-Currently, I am working on a project 'AI Powered Knowledge Systems', building a book/framework similiar to PFS.
+Currently, I am working on a project 'AI Powered Knowledge Systems', building a book/framework similiar to PyTest Full Stack.
 
 My links:
 
@@ -35,7 +34,7 @@ My links:
 
 ### Brighton, UK
 
-<img src="./images/brighton.jpg" width="400" height="400">
+<img src="./images/brighton.jpg"  height="400">
 
 ### Volounteer coach
 
@@ -81,21 +80,34 @@ There are many definitions:
 
 We will look at examples of code to see what AI Agents are and what they can do.
 
-If we look at [https://aiagentsdirectory.com/landscape](https://aiagentsdirectory.com/landscape) we can see that there are many examples of AI Agent Frameworks and they seem to increase each week.
+If we look at:
+## [https://aiagentsdirectory.com/landscape](https://aiagentsdirectory.com/landscape) 
+
+we can see that there are many examples of AI Agent Frameworks and they seem to increase each week.
 
 ## Aim
 
-What I would like to achieve in this talk is to demystify AI Agents and AI Programming because it can seem like it is another different world of dev. 
+What I would like to achieve in this talk is to **demystify** and **simplify** AI Agents and AI Programming because it can seem like it is another different world of dev. 
 
 What if AI Agents were 'just' Python code with a REST API call, admittedly a very magical API?
 
-Then, we would use day to day Python design patterns to handle the responses we get back from the AI Agent and move on to the next step. Business as usual as Python/Django developers.
+Then, we would use day to day Python design patterns to handle the responses we get back from the AI Agent and move on to the next step. Business as usual for Python/Django developers.
 
-This is the main focus of the talk - demystify and simplify - and this will enable you to construct workflows using AI Agents.
+This is the main focus of the talk - **demystify and simplify** - and this will enable you to create AI Agents and also construct workflows using AI Agents.
 
-With that in mind, we don't need to fully grasp the code this time around. It is more about see the high level view and once can dig deeper into the code offline.
+With that in mind, we don't need to fully grasp the code this time around. 
 
-We will use Notebooks to explore AI Agents and then we will see an implementation of an AI Agent in Django, using the same code. It is the same code that produces the same output for us to use in our Django App. There is not extra 'wiring' involved.
+It is more about see the high level view and once can dig deeper into the code offline.
+
+*Look at the patterns and structure rather than the code details* - it is what helped me get to grips with this new paradigm.
+
+We will use Notebooks to explore AI Agents and then we will see an implementation of an AI Agent in Django, using the same code. 
+
+It is the same code that produces the same output for us to use in our Django App. *There is not extra 'wiring' involved to use AI Agents in Django*.
+
+There is a demo and sample code to illustrate the FAQ use case which we will see later. 
+
+Like getting data back from the database, we get data back from an LLM request to use as we wish.
 
 ## 180 degrees
 
@@ -104,17 +116,23 @@ We will use Notebooks to explore AI Agents and then we will see an implementatio
 
 I like to use the metaphor of the upside down computer mouse. When we try to use it, it can take while to reverse our apporach. It is still the same set of movements - left, right, up and down - but in the opposite way to the way we are used to.
 
-There are 3 areas concerning this.
+There are 3 areas concerning Agentic AI in my opinion:
 
 1. Client side creation of endpoints (APIs) rather than server side prebuilt endpoints.
 2. Use of Natural/Human Language, in my case English to create the code.
 3. Autonomy - the LLM directs the flow of the app.
 
-For the purpose of this talk I will use the term `function` in the mathematical sense of input -> function(input) -> output that can then be passed into another function to give chaining.
+For the purpose of this talk I will use the term `function` in the mathematical sense:
 
-The `function` might be a Python function or a class. It is for demo purposes code that takes in input and returns output.
+### input -> function(input) -> output -> function(output) -> output2
 
-Before we go into some code examples, we will refresh ourselves that a REST API a request is sending a payload of data to a server and then the server returns a response. This is a very simple example of a REST API. 
+that can then be passed into another function to give chaining.
+
+The `function` might be a Python function or a class. 
+
+Before we go into some code examples, we will refresh ourselves that a REST API a request is sending a payload of data to a server and then the server returns a response. 
+
+This is a very simple example of a REST API. 
 
 Again, this is to demystify and simplify any libraries we may import for convenience functions.
 
@@ -123,6 +141,8 @@ Authentication takes place by passing some sort of token to the server, usually 
 ```
 model = "gpt-3.5-turbo"
 model_endpoint = "https://api.openai.com/v1/chat/completions"
+
+# There is only one endpoint. We don't use other endpoints for differing tasks, there is just one end point and we will create our custom endpoint through prompt engineering.
 
 headers = {
     "Content-Type": "application/json",
@@ -149,15 +169,13 @@ response = requests.post(
 
 ```
 
-The request is a string of characters and does not contain any objects or other data types.
+The request is text and does not contain any objects or other data types.
 
-Likewise, we get a string response. We pass some text to a function and get some text back.
+Likewise, we get a text response. We pass some text to a function and get some text back.
 
 We will look at `01_openai_api_with_requests.ipynb` to see an example of getting a response from the LLM.
 
 `01_openai_api_with_requests.ipynb`.
-
-*There is only one endpoint.* We don't use other endpoints for differing tasks, there is just one end point and we create our custom endpoint through prompt engineering.
 
 In `02_api.ipynb`, we can see that we can get a joke from a regular API endpoint, with the assumption that there is no AI involved!
 

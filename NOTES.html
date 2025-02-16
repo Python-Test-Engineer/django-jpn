@@ -168,10 +168,10 @@
   <![endif]-->
 </head>
 <body>
-<h1 id="welcome">Welcome</h1>
 <!-- https://mconverter.eu/convert/markdown/html/ -->
 
-<p>Implementing Agentic AI Solutions in Django from scratch</p>
+<img src="craig-west-intro-card.png" width="600px">
+
 <p>The repo is here:</p>
 <p><a
 href="https://pytest-cookbook.com/">https://pytest-cookbook.com/</a></p>
@@ -190,7 +190,7 @@ lot of comments for clarification.</p>
 and Certified MicroSoft SQL Server DBA. I returned in 2017 via WordPress
 and JavaScript Frameworks, moving to Python and ML in 2021.</p>
 <p>Currently, I am working on a project ‘AI Powered Knowledge Systems’,
-building a book/framework similiar to PFS.</p>
+building a book/framework similiar to PyTest Full Stack.</p>
 <p>My links:</p>
 <ul>
 <li>https://ai-powered-knowledge-systems.netlify.app/</li>
@@ -198,7 +198,7 @@ building a book/framework similiar to PFS.</p>
 <li>https://django-fullstack-testing.netlify.app/</li>
 </ul>
 <h3 id="brighton-uk">Brighton, UK</h3>
-<img src="./images/brighton.jpg" width="400" height="400">
+<img src="./images/brighton.jpg"  height="400">
 
 <h3 id="volounteer-coach">Volounteer coach</h3>
 <p>I am a volounteer coach at codebar.io/brighton</p>
@@ -228,28 +228,40 @@ alt="Anthropic" /></p>
 <p><img src="./images/what-is-agent-huggingface.png" alt="HF" /></p>
 <p>We will look at examples of code to see what AI Agents are and what
 they can do.</p>
-<p>If we look at <a
-href="https://aiagentsdirectory.com/landscape">https://aiagentsdirectory.com/landscape</a>
-we can see that there are many examples of AI Agent Frameworks and they
-seem to increase each week.</p>
+<p>If we look at:</p>
+<h2 id="httpsaiagentsdirectorycomlandscape"><a
+href="https://aiagentsdirectory.com/landscape">https://aiagentsdirectory.com/landscape</a></h2>
+<p>we can see that there are many examples of AI Agent Frameworks and
+they seem to increase each week.</p>
 <h2 id="aim">Aim</h2>
-<p>What I would like to achieve in this talk is to demystify AI Agents
-and AI Programming because it can seem like it is another different
-world of dev.</p>
+<p>What I would like to achieve in this talk is to
+<strong>demystify</strong> and <strong>simplify</strong> AI Agents and
+AI Programming because it can seem like it is another different world of
+dev.</p>
 <p>What if AI Agents were ‘just’ Python code with a REST API call,
 admittedly a very magical API?</p>
 <p>Then, we would use day to day Python design patterns to handle the
 responses we get back from the AI Agent and move on to the next step.
-Business as usual as Python/Django developers.</p>
-<p>This is the main focus of the talk - demystify and simplify - and
-this will enable you to construct workflows using AI Agents.</p>
+Business as usual for Python/Django developers.</p>
+<p>This is the main focus of the talk - <strong>demystify and
+simplify</strong> - and this will enable you to create AI Agents and
+also construct workflows using AI Agents.</p>
 <p>With that in mind, we don’t need to fully grasp the code this time
-around. It is more about see the high level view and once can dig deeper
-into the code offline.</p>
+around.</p>
+<p>It is more about see the high level view and once can dig deeper into
+the code offline.</p>
+<p><em>Look at the patterns and structure rather than the code
+details</em> - it is what helped me get to grips with this new
+paradigm.</p>
 <p>We will use Notebooks to explore AI Agents and then we will see an
-implementation of an AI Agent in Django, using the same code. It is the
-same code that produces the same output for us to use in our Django App.
-There is not extra ‘wiring’ involved.</p>
+implementation of an AI Agent in Django, using the same code.</p>
+<p>It is the same code that produces the same output for us to use in
+our Django App. <em>There is not extra ‘wiring’ involved to use AI
+Agents in Django</em>.</p>
+<p>There is a demo and sample code to illustrate the FAQ use case which
+we will see later.</p>
+<p>Like getting data back from the database, we get data back from an
+LLM request to use as we wish.</p>
 <h2 id="180-degrees">180 degrees</h2>
 <p><img src="./images/mouse-up.jpg" alt="mouse up" /> <img
 src="./images/mouse-down.jpg" alt="mouse down" /></p>
@@ -257,7 +269,7 @@ src="./images/mouse-down.jpg" alt="mouse down" /></p>
 try to use it, it can take while to reverse our apporach. It is still
 the same set of movements - left, right, up and down - but in the
 opposite way to the way we are used to.</p>
-<p>There are 3 areas concerning this.</p>
+<p>There are 3 areas concerning Agentic AI in my opinion:</p>
 <ol type="1">
 <li>Client side creation of endpoints (APIs) rather than server side
 prebuilt endpoints.</li>
@@ -266,21 +278,24 @@ code.</li>
 <li>Autonomy - the LLM directs the flow of the app.</li>
 </ol>
 <p>For the purpose of this talk I will use the term
-<code>function</code> in the mathematical sense of input -&gt;
-function(input) -&gt; output that can then be passed into another
-function to give chaining.</p>
-<p>The <code>function</code> might be a Python function or a class. It
-is for demo purposes code that takes in input and returns output.</p>
+<code>function</code> in the mathematical sense:</p>
+<h3 id="input---functioninput---output---functionoutput---output2">input
+-&gt; function(input) -&gt; output -&gt; function(output) -&gt;
+output2</h3>
+<p>that can then be passed into another function to give chaining.</p>
+<p>The <code>function</code> might be a Python function or a class.</p>
 <p>Before we go into some code examples, we will refresh ourselves that
 a REST API a request is sending a payload of data to a server and then
-the server returns a response. This is a very simple example of a REST
-API.</p>
+the server returns a response.</p>
+<p>This is a very simple example of a REST API.</p>
 <p>Again, this is to demystify and simplify any libraries we may import
 for convenience functions.</p>
 <p>Authentication takes place by passing some sort of token to the
 server, usually in the headers:</p>
 <pre><code>model = &quot;gpt-3.5-turbo&quot;
 model_endpoint = &quot;https://api.openai.com/v1/chat/completions&quot;
+
+# There is only one endpoint. We don&#39;t use other endpoints for differing tasks, there is just one end point and we will create our custom endpoint through prompt engineering.
 
 headers = {
     &quot;Content-Type&quot;: &quot;application/json&quot;,
@@ -305,16 +320,13 @@ response = requests.post(
    data=json.dumps(payload) # The request data we are sending
 ).json()
 </code></pre>
-<p>The request is a string of characters and does not contain any
-objects or other data types.</p>
-<p>Likewise, we get a string response. We pass some text to a function
-and get some text back.</p>
+<p>The request is text and does not contain any objects or other data
+types.</p>
+<p>Likewise, we get a text response. We pass some text to a function and
+get some text back.</p>
 <p>We will look at <code>01_openai_api_with_requests.ipynb</code> to see
 an example of getting a response from the LLM.</p>
 <p><code>01_openai_api_with_requests.ipynb</code>.</p>
-<p><em>There is only one endpoint.</em> We don’t use other endpoints for
-differing tasks, there is just one end point and we create our custom
-endpoint through prompt engineering.</p>
 <p>In <code>02_api.ipynb</code>, we can see that we can get a joke from
 a regular API endpoint, with the assumption that there is no AI
 involved!</p>
