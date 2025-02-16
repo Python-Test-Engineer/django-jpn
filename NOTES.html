@@ -179,7 +179,7 @@ href="https://pytest-cookbook.com/">https://pytest-cookbook.com/</a></p>
 <p><a
 href="https://github.com/Python-Test-Engineer/django-jpn">https://github.com/Python-Test-Engineer/django-jpn</a></p>
 <br>
-And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me.
+And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me. There will repitition of some information between my NOTES and the NOTEBOOKS to clarify matters.
 
 <p>The talk will be mostly code walkthroughs with notebooks that have a
 lot of comments for clarification.</p>
@@ -379,7 +379,7 @@ statement. or router.</p>
 <p>In summary, this module has shown the 3 counter-intuitive steps of AI
 Agents - Autonomy, Client Side Creation of the route and the use of
 Natural Language.</p>
-<h1 id="faqrouter">FAQ/ROUTER</h1>
+<h1 id="faq">FAQ</h1>
 <p>Sometimes we might think that AI Development is binary - it is fully
 AI or not.</p>
 <p>What if we can include ‘a bit of AI’ in our App? Remember, AI Agents
@@ -409,6 +409,7 @@ RAG is essentially augmenting the LLM with our own data to ‘train’ it or
 ‘fine tune’.</p>
 <p>We can see that we can create a powerful AI Agent that can answer
 questions based on the data in the FAQ list.</p>
+<h2 id="router">ROUTER</h2>
 <p>We can further extend this to be a type of ROUTER or <em>if/else</em>
 statement to provide a sense of autonomy to the app - it will direct the
 flow of the app. We can have ‘Human in the Loop’ at any stage so that we
@@ -440,12 +441,14 @@ as everyday Python where we can use a range of Software Design Patterns
 like Author, Pub/Sub, Finite State Machine etc.</p>
 <p>We will take a look at this later.</p>
 <p>I think we can see that what we call these things - Agents, Tools,
-Routers, functions - is quite arbitrary and merely a convenience for
+Routers, Functions - is quite arbitrary and merely a convenience for
 what works for us. At the end of the day, everything in Python is an
 OBJECT, so we can use whatever we want.</p>
+<p><img src="./ESSENCE.png" alt="ESSENCE" /></p>
 <h1 id="tools">Tools</h1>
 <p>AI Agents may need to get extra information by running functions.
-This is called ‘tool calling’.</p>
+This is called ‘tool/function calling’ and is just a function call as in
+regular Python.</p>
 <p>We can get the LLM to not just select a tool but also extract the
 arguments. We will see information extraction in
 <code>06_information_extraction.ipynb</code>.</p>

@@ -286,7 +286,7 @@ Function is run on our 'box' - we continue to add messages to our list of messag
 
 ![open-ai](./images/where-tools-are-executed.png)
 
-# Data extraction
+# DATA EXTRACTION
 
 We can use the LLM to extract data from a document. This is called 'information extraction'. We will see this in `06_information_extraction.ipynb`. 
 
@@ -295,7 +295,6 @@ We can use the LLM to extract data from a document. This is called 'information 
 I bring this up again as I came across this extraction pattern in an example of 'Teachable Agents'. This sounded very futuristic but looking at the code, it is information extraction that can be stored in short term memory - app level cache - or long term menory - stored in a DB for example and retrieved as needed and added to the SYSTEM MESSAGE.
 
 Examples show this for data pipelines, however, if it were part of an invoicing process one would more likely have the information stored rather than in a prepared document.
-
 
 # 4 main patterns
 
