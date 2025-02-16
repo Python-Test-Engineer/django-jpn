@@ -264,11 +264,13 @@ We have not yet seen a multi agent scenario but I would describe this as everyda
 
 We will take a look at this later.
 
-I think we can see that what we call these things - Agents, Tools, Routers, functions - is quite arbitrary and merely a convenience for what works for us. At the end of the day, everything in Python is an OBJECT, so we can use whatever we want.
+I think we can see that what we call these things - Agents, Tools, Routers, Functions - is quite arbitrary and merely a convenience for what works for us. At the end of the day, everything in Python is an OBJECT, so we can use whatever we want.
+
+![ESSENCE](./ESSENCE.png)
 
 # Tools
 
-AI Agents may need to get extra information by running functions. This is called 'tool calling'.
+AI Agents may need to get extra information by running functions. This is called 'tool/function calling' and is just a function call as in regular Python.
 
 We can get the LLM to not just select a tool but also extract the arguments. We will see information extraction in `06_information_extraction.ipynb`.
 
