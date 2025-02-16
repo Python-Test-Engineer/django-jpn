@@ -12,7 +12,7 @@ or
 
 
 <br>
-And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me.
+And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me. There will repitition of some information between my NOTES and the NOTEBOOKS to clarify matters.
 
 The talk will be mostly code walkthroughs with notebooks that have a lot of comments for clarification.
 
