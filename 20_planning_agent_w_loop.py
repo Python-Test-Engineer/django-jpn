@@ -5,6 +5,10 @@ import os
 from openai import OpenAI
 from dotenv import load_dotenv
 
+from rich.console import Console
+
+console = Console()
+
 # Load environment variables in a file called .env
 # Print the key prefixes to help with any debugging
 
@@ -114,7 +118,7 @@ def loop(max_iterations=10, query: str = ""):
     agent = Agent(client=client, system=system_prompt)
     tools = ["calculate_total", "get_product_price"]
     next_prompt = query
-    print("\nSTARTING LOOP...\n")
+    console.print("[dark_orange]\nSTARTING LOOP...\n[/]")
     i = 0
     while i < max_iterations:
         i += 1
@@ -139,7 +143,7 @@ def loop(max_iterations=10, query: str = ""):
                 result_tool = eval(f"{next_function}('{next_arg}')")
                 # OBSERVATIONS passed back into next_prompt
                 next_prompt = f"OBSERVATION: {result_tool}"
-                print(next_prompt)
+                console.print(f"[green]{next_prompt}[/]")
                 print("------------------------------\n")
             else:
                 next_prompt = "OBSERVATION: Tool not found"
@@ -150,10 +154,11 @@ def loop(max_iterations=10, query: str = ""):
         if "ANSWER" in result:
             # the result at top has final result
             print("======================================")
-            print(f"Answer found:\n\t{result}\n")
+            console.print(f"[cyan bold]Answer found:\n\t{result}\n[/]")
             print("======================================")
             answers.append(result)
             break  # we have an answer so break out of loop
+
 
 # Run 3 examples for demo
 loop(query="What is cost of a bike including VAT?")
