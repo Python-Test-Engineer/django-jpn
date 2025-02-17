@@ -308,6 +308,12 @@ We have seen examples of these in this talk, bar a multi-agent pattern.
 
 ## REFLECTION PATTERN
 
+input -> function(input) -> output -> function(output) -> output2
+
+We generate a response with our first query using a system prompt to create code.
+
+We then pass the output into another function that acts as a reviewer to produce the next version of the code.
+
 Many times when we use ChatGPT say, we ask for it to refine its previous answer. This is the Reflection pattern where we send the previous response and then ask it to refine it.
 
 In fact, it is like RAG. The first request generates some content, which we then add to the next request which has a system prompt of being a critique.
@@ -325,6 +331,8 @@ We have seen Tool Calling previously.
 A powerful pattern is the ReAct (Reason-Act) pattern.
 
 This can be viewed of as Multi-Step. Let's go through the code.
+
+To get a sense of how it works, look at `20_planning_agent_w_loop.py` as we can get a high level overview of the code, whereas `20_planning_agent_no_loop.ipynb` needs more of a walk through.
 
 ## MULTI AGENT
 

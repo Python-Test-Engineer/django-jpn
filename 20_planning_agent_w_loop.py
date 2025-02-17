@@ -72,7 +72,6 @@ Here is an example session:
 
 User Question: What is total cost of a bike including VAT?
 
-
 AI Response: THOUGHT: I need to find the cost of a bike|ACTION|get_product_price|bike
 
 You will be called again with the result of get_product_price as the OBSERVATION and will have OBSERVATION|200 sent as another LLM query along with previous messages.
@@ -119,10 +118,13 @@ def loop(max_iterations=10, query: str = ""):
     i = 0
     while i < max_iterations:
         i += 1
+
         # This is the AI bit
         # -------------------------
         result = agent(next_prompt)
         # -------------------------
+
+        # Here we loop over ACTIONS getting OBSERVATIONS and continue until we get an ANSWER
         if "ACTION" in result:
             # extract function and arguments
 
@@ -135,6 +137,7 @@ def loop(max_iterations=10, query: str = ""):
 
             if next_function in tools:
                 result_tool = eval(f"{next_function}('{next_arg}')")
+                # OBSERVATIONS passed back into next_prompt
                 next_prompt = f"OBSERVATION: {result_tool}"
                 print(next_prompt)
                 print("------------------------------\n")
@@ -150,9 +153,9 @@ def loop(max_iterations=10, query: str = ""):
             print(f"Answer found:\n\t{result}\n")
             print("======================================")
             answers.append(result)
-            break
+            break  # we have an answer so break out of loop
 
-
+# Run 3 examples for demo
 loop(query="What is cost of a bike including VAT?")
 loop(query="What is cost of a tv including VAT?")
 loop(query="What is cost of a laptop including VAT?")
