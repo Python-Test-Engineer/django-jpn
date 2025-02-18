@@ -296,6 +296,7 @@ I bring this up again as I came across this extraction pattern in an example of 
 
 Examples show this for data pipelines, however, if it were part of an invoicing process one would more likely have the information stored rather than in a prepared document.
 
+
 # 4 main patterns
 
 Andrew Ng describes four main patterns
