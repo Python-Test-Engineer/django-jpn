@@ -126,6 +126,8 @@ For the purpose of this talk I will use the term `function` in the mathematical 
 
 ### input -> function(input) -> output -> function(output) -> output2
 
+![input-output](./INPUT_OUTPUT.png)
+
 that can then be passed into another function to give chaining.
 
 The `function` might be a Python function or a class. 

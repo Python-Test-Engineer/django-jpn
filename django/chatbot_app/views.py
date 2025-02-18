@@ -3,12 +3,14 @@ from django.shortcuts import render
 from .models import Message
 import requests
 from dotenv import load_dotenv, find_dotenv
+from rich.console import Console
 
+console = Console()
 # Load in our API keys
 load_dotenv(find_dotenv())
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-print(f"[dark_orange]OPENAI_API_KEY: {OPENAI_API_KEY}[/]")
+console.print(f"[dark_orange]OPENAI_API_KEY: {OPENAI_API_KEY}[/]")
 
 
 # We add in our own system message
