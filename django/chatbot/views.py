@@ -1,3 +1,6 @@
+# The FAQ example from 03_faq.ipynb using either OpenAI or Groq.
+# Refactoring so that can have the LLM choice as a config variable has not been done.
+
 # SYSTEM
 import os
 
@@ -77,16 +80,13 @@ def ask_groq(message):
     return answer
 
 
-# Test
-def index(request):
-    return render(request, "home.html")
-
-
+# Here is the Chatbot
 def chatbot(request):
     chats = Chat.objects.filter(user=request.user)
 
     if request.method == "POST":
         message = request.POST.get("message")
+        # REFACTORING better so that we can set choice of LLM once in a config file but not done for this demo.
         response = ask_openai(message)
         # response = ask_groq(message)
 
@@ -101,6 +101,7 @@ def chatbot(request):
     return render(request, "chatbot.html", {"chats": chats})
 
 
+# This uses a different template with a ChatGPT look.
 def chatbot_groq(request):
     chats = Chat.objects.filter(user=request.user)
 
@@ -159,3 +160,8 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return redirect("login")
+
+
+# Test
+def index(request):
+    return render(request, "home.html")

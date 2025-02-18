@@ -2,9 +2,11 @@
 
 ## OpenAI Key
 
-Ensure you login first with admin/password in admin site.
+*Ensure you login first with admin/password in admin site.*
 
-The go to site.
+admin and password
+
+Then go to [site](http://127.0.0.1:8000/).
 
 This works with OpenAI Key saved in the .env file.
 
@@ -14,4 +16,8 @@ Usual Django set up - this works with `python manage.py runserver` with admin/pa
 
 Go to site/admin and login then got to site/chatbot or site/chatbot_app.
 
-Thanks to Tom Dekan for the latter and the former is widely given in examples on the web.
+The app 'chatbot' with views.py is the example we used of FAQ.
+
+Another chatbot `chatbot_app` uses HTMX rather than JS - Thanks to Tom Dekan for this and can be found on YouTube [https://www.youtube.com/watch?v=Y8GjRrotz6M](https://www.youtube.com/watch?v=Y8GjRrotz6M)
+
+[http://127.0.0.1:8000/chatbot-app/](http://127.0.0.1:8000/chatbot-app/) to see this app
