@@ -219,13 +219,13 @@ dancing.</p>
 <p>…cut and paste was cut and paste!</p>
 <h1 id="what-are-ai-agents">What are AI Agents?</h1>
 <p>There are many definitions:</p>
-<h2 id="pydantic">Pydantic</h2>
-<p><img src="./images/what-is-agent-pydantic.png" alt="Pydantic" /></p>
 <h2 id="anthropic">Anthropic</h2>
 <p><img src="./images/what-is-agent-anthropic.png"
 alt="Anthropic" /></p>
 <h2 id="huggingface">HuggingFace</h2>
 <p><img src="./images/what-is-agent-huggingface.png" alt="HF" /></p>
+<h2 id="pydantic">Pydantic</h2>
+<p><img src="./images/what-is-agent-pydantic.png" alt="Pydantic" /></p>
 <p>We will look at examples of code to see what AI Agents are and what
 they can do.</p>
 <p>If we look at:</p>
@@ -240,6 +240,7 @@ AI Programming because it can seem like it is another different world of
 dev.</p>
 <p>What if AI Agents were ‘just’ Python code with a REST API call,
 admittedly a very magical API?</p>
+<p><em>AI (Agents) as API</em></p>
 <p>Then, we would use day to day Python design patterns to handle the
 responses we get back from the AI Agent and move on to the next step.
 Business as usual for Python/Django developers.</p>
@@ -282,6 +283,7 @@ code.</li>
 <h3 id="input---functioninput---output---functionoutput---output2">input
 -&gt; function(input) -&gt; output -&gt; function(output) -&gt;
 output2</h3>
+<p><img src="./INPUT_OUTPUT.png" alt="input-output" /></p>
 <p>that can then be passed into another function to give chaining.</p>
 <p>The <code>function</code> might be a Python function or a class.</p>
 <p>Before we go into some code examples, we will refresh ourselves that
@@ -462,7 +464,7 @@ and then return the result.</p>
 <p>Function is run on our ‘box’ - we continue to add messages to our
 list of messages and send them to the LLM.</p>
 <p><img src="./images/where-tools-are-executed.png" alt="open-ai" /></p>
-<h1 id="data-extraction">Data extraction</h1>
+<h1 id="data-extraction">DATA EXTRACTION</h1>
 <p>We can use the LLM to extract data from a document. This is called
 ‘information extraction’. We will see this in
 <code>06_information_extraction.ipynb</code>.</p>
@@ -482,6 +484,12 @@ rather than in a prepared document.</p>
 <p>We have seen examples of these in this talk, bar a multi-agent
 pattern.</p>
 <h2 id="reflection-pattern">REFLECTION PATTERN</h2>
+<p>input -&gt; function(input) -&gt; output -&gt; function(output) -&gt;
+output2</p>
+<p>We generate a response with our first query using a system prompt to
+create code.</p>
+<p>We then pass the output into another function that acts as a reviewer
+to produce the next version of the code.</p>
 <p>Many times when we use ChatGPT say, we ask for it to refine its
 previous answer. This is the Reflection pattern where we send the
 previous response and then ask it to refine it.</p>
@@ -497,6 +505,11 @@ pattern.</p>
 <h2 id="planning">PLANNING</h2>
 <p>A powerful pattern is the ReAct (Reason-Act) pattern.</p>
 <p>This can be viewed of as Multi-Step. Let’s go through the code.</p>
+<p>To get a sense of how it works, look at
+<code>20_planning_agent_w_loop.py</code> as we can get a high level
+overview of the code, whereas
+<code>20_planning_agent_no_loop.ipynb</code> needs more of a walk
+through.</p>
 <h2 id="multi-agent">MULTI AGENT</h2>
 <h3 id="libraries">Libraries</h3>
 <p>I like to think of Libraries as frameworks without the framework! By

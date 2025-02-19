@@ -12,9 +12,11 @@ or
 
 
 <br>
-And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me. There will repitition of some information between my NOTES and the NOTEBOOKS to clarify matters.
+And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me. There will repetition of some information between my NOTES and the NOTEBOOKS to clarify matters.
 
-The talk will be mostly code walkthroughs with notebooks that have a lot of comments for clarification.
+The talk will be mostly code walkthroughs with notebooks that have a lot of comments for completeness and clarification.
+
+The repo is a mini-workshop effectively for future reference.
 
 ## Who am I?
 
@@ -66,10 +68,6 @@ https://en.wikipedia.org/wiki/Punched_tape#/media/File:Creed_model_6S-2_paper_ta
 
 There are many definitions:
 
-## Pydantic
-
-![Pydantic](./images/what-is-agent-pydantic.png)
-
 ## Anthropic
 
 ![Anthropic](./images/what-is-agent-anthropic.png)
@@ -77,6 +75,10 @@ There are many definitions:
 ## HuggingFace
 
 ![HF](./images/what-is-agent-huggingface.png)
+
+## Pydantic
+
+![Pydantic](./images/what-is-agent-pydantic.png)
 
 We will look at examples of code to see what AI Agents are and what they can do.
 
@@ -90,6 +92,8 @@ we can see that there are many examples of AI Agent Frameworks and they seem to 
 What I would like to achieve in this talk is to **demystify** and **simplify** AI Agents and AI Programming because it can seem like it is another different world of dev. 
 
 What if AI Agents were 'just' Python code with a REST API call, admittedly a very magical API?
+
+*AI (Agents) as API*...
 
 Then, we would use day to day Python design patterns to handle the responses we get back from the AI Agent and move on to the next step. Business as usual for Python/Django developers.
 
