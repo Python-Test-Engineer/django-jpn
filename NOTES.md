@@ -10,8 +10,6 @@ or
 
 [https://github.com/Python-Test-Engineer/django-jpn](https://github.com/Python-Test-Engineer/django-jpn)
 
-<br>
-
 I will show you the repo and it is a mini-workshop effectively for future reference.
 
 And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me. There will repetition of some information between my NOTES and the NOTEBOOKS to clarify matters.
@@ -38,7 +36,8 @@ My links:
 
 ### Brighton, UK
 
-<img src="./images/brighton.jpg"  height="400">
+<img src="./images/brighton-map.jpeg"  height="200">
+<img src="./images/brighton.jpg"  height="200">
 
 ### Volounteer coach
 
