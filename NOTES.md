@@ -133,8 +133,6 @@ For the purpose of this talk I will use the term `function` in the mathematical 
 
 ![input-output](./INPUT_OUTPUT.png)
 
-that can then be passed into another function to give chaining.
-
 The `function` might be a Python function or a class. 
 
 Before we go into some code examples, we will refresh ourselves that a REST API a request is sending a payload of data to a server and then the server returns a response. 
@@ -149,7 +147,11 @@ Authentication takes place by passing some sort of token to the server, usually 
 model = "gpt-3.5-turbo"
 model_endpoint = "https://api.openai.com/v1/chat/completions"
 
-# There is only one endpoint. We don't use other endpoints for differing tasks, there is just one end point and we will create our custom endpoint through prompt engineering.
+# KEY TAKEAWAYs
+
+## There is only one endpoint. We don't use other endpoints for differing tasks, there is just one end point and we will create our custom endpoint through prompt engineering.
+
+## There is no reference to previous requests to maintain a history - we must supply the history with each request.
 
 headers = {
     "Content-Type": "application/json",
@@ -246,8 +248,20 @@ This is RAG or Retrieval Augmented Generation, where we 'augment' the query with
 
 We can see that we can create a powerful AI Agent that can answer questions based on the data in the FAQ list.
 
+## Django Demo
 
-## ROUTER
+Let's look at how this is done in Django.
+
+To keep the code similar tot he notebook, we will look at the `chatbot` app 
+and the `views.py` file.
+
+There is a refactored version using HTMX in the `chatobt_app` app.
+
+I have already logged in so we can see the `chatbot` app in action as well as the `chabot_app` version.
+
+The key takeway is that the Django implementation is very similar to the notebook implementation with no special wiring involved.
+
+# ROUTER
 
 We can further extend this to be a type of ROUTER or *if/else* statement to provide a sense of autonomy to the app - it will direct the flow of the app. We can have 'Human in the Loop' at any stage so that we restrict the flow to approved paths.
 
@@ -275,7 +289,7 @@ I think we can see that what we call these things - Agents, Tools, Routers, Func
 
 ![ESSENCE](./ESSENCE.png)
 
-# Tools
+# TOOLS
 
 AI Agents may need to get extra information by running functions. This is called 'tool/function calling' and is just a function call as in regular Python.
 
@@ -330,7 +344,7 @@ We can repeat this as many times as we want, adding previous responses to the ne
 
 `15_reflection_pattern.ipynb` shows how we can use this pattern.
 
-## TOOL
+## TOOLS
 
 We have seen Tool Calling previously.
 
@@ -375,7 +389,7 @@ Langraph
 AutoGen
 CrewAI
 
-And there are many low/no code versions.
+And there are many low/no code versions as we saw in the [AI Agents Directory](https://aiagentsdirectory.com/category/ai-agents-frameworks)
 
 # Summary
 
