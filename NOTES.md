@@ -10,19 +10,21 @@ or
 
 [https://github.com/Python-Test-Engineer/django-jpn](https://github.com/Python-Test-Engineer/django-jpn)
 
-
 <br>
+
+I will show you the repo and it is a mini-workshop effectively for future reference.
+
 And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me. There will repetition of some information between my NOTES and the NOTEBOOKS to clarify matters.
 
 The talk will be mostly code walkthroughs with notebooks that have a lot of comments for completeness and clarification.
-
-The repo is a mini-workshop effectively for future reference.
 
 ## Who am I?
 
 **I am one of *US* - a regular Pythonista.**
 
 Wrestling and getting to grips with these new technologies.
+
+*"It doesn't get any easier - just different." - Anon*
 
 I was in tech in the early 2000s as a Business Information Architect and Certified MicroSoft SQL Server DBA. I returned in 2017 via WordPress and JavaScript Frameworks, moving to Python and ML in 2021.
 
