@@ -14,6 +14,7 @@
 
     body {
       font-family: Raleway, sans-serif;
+      font-size: 20px;
       margin: 0 auto;
       max-width: 36em;
       padding-left: 50px;
@@ -24,6 +25,17 @@
       overflow-wrap: break-word;
       text-rendering: optimizeLegibility;
       font-kerning: normal;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+
+      h1 {
+        font-size: 1.8em;
+      }
     }
 
     @media print {
@@ -362,10 +374,6 @@
   <pre><code>model = &quot;gpt-3.5-turbo&quot;
 model_endpoint = &quot;https://api.openai.com/v1/chat/completions&quot;
 
-# KEY TAKEAWAYs
-
-## There is only one endpoint. We don&#39;t use other endpoints for differing tasks, there is just one end point and we will create our custom endpoint through prompt engineering.
-
 ## There is no reference to previous requests to maintain a history - we must supply the history with each request.
 
 headers = {
@@ -387,9 +395,13 @@ payload = {
 # Use HTTP POST method
 response = requests.post(
    url=model_endpoint, # The API
-   headers=headers, # Headers fro authentication etc
+   headers=headers, # Headers for authentication etc
    data=json.dumps(payload) # The request data we are sending
 ).json()
+
+# KEY TAKEAWAYs
+
+## There is only one endpoint. We don&#39;t use other endpoints for differing tasks, there is just one end point and we will create our custom endpoint through prompt engineering.
 </code></pre>
   <p>The request is text and does not contain any objects or other data
     types.</p>
