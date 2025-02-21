@@ -147,10 +147,6 @@ Authentication takes place by passing some sort of token to the server, usually 
 model = "gpt-3.5-turbo"
 model_endpoint = "https://api.openai.com/v1/chat/completions"
 
-# KEY TAKEAWAYs
-
-## There is only one endpoint. We don't use other endpoints for differing tasks, there is just one end point and we will create our custom endpoint through prompt engineering.
-
 ## There is no reference to previous requests to maintain a history - we must supply the history with each request.
 
 headers = {
@@ -172,9 +168,13 @@ payload = {
 # Use HTTP POST method
 response = requests.post(
    url=model_endpoint, # The API
-   headers=headers, # Headers fro authentication etc
+   headers=headers, # Headers for authentication etc
    data=json.dumps(payload) # The request data we are sending
 ).json()
+
+# KEY TAKEAWAYs
+
+## There is only one endpoint. We don't use other endpoints for differing tasks, there is just one end point and we will create our custom endpoint through prompt engineering.
 
 ```
 

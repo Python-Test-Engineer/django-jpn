@@ -1,10 +1,6 @@
-# set GROQ_API_KEY in the secrets
-
 import os
-
 from openai import OpenAI
 from dotenv import load_dotenv
-
 from rich.console import Console
 
 console = Console()
@@ -49,11 +45,9 @@ class Agent:
 
 
 system_prompt = """
-
 You run in a loop of THOUGHT, ACTION, OBSERVATION.
 
 You have two tools available for your ACTIONS - calculate_total and get_product_price so that you can get the total price of an item requested by the user.
-
 
 # 1. calculate_total:
 
@@ -105,12 +99,10 @@ def get_product_price(product):
         return 200
     if product == "laptop":
         return 300
-
     return None
 
 
 # We now loop over the query until an answer is found or the'max_iterations' is reached
-
 answers = []
 
 
@@ -122,23 +114,18 @@ def loop(max_iterations=10, query: str = ""):
     i = 0
     while i < max_iterations:
         i += 1
-
         # This is the AI bit
         # -------------------------
         result = agent(next_prompt)
         # -------------------------
-
         # Here we loop over ACTIONS getting OBSERVATIONS and continue until we get an ANSWER
         if "ACTION" in result:
             # extract function and arguments
-
             next = result.split("|")
             print(next)
             next_function = next[2].strip()
             next_arg = str(next[3]).strip()
-
             # if a tool/function exists - run it and prepend with OBSERVATION as we descrbed in system prompt
-
             if next_function in tools:
                 result_tool = eval(f"{next_function}('{next_arg}')")
                 # OBSERVATIONS passed back into next_prompt
@@ -148,9 +135,7 @@ def loop(max_iterations=10, query: str = ""):
             else:
                 next_prompt = "OBSERVATION: Tool not found"
             continue
-
         # if we have a final ANSWER, store it and break out of loop
-
         if "ANSWER" in result:
             # the result at top has final result
             print("======================================")
@@ -160,13 +145,10 @@ def loop(max_iterations=10, query: str = ""):
             break  # we have an answer so break out of loop
 
 
-# Run 3 examples for demo
 loop(query="What is cost of a bike including VAT?")
-loop(query="What is cost of a tv including VAT?")
-loop(query="What is cost of a laptop including VAT?")
 
-
-print("\n=========== SUMMARY ANSWERS ===========")
-
-for answer in answers:
-    print(answer)
+# loop(query="What is cost of a tv including VAT?")
+# loop(query="What is cost of a laptop including VAT?")
+# print("\n=========== SUMMARY ANSWERS ===========")
+# for answer in answers:
+#     print(answer)
