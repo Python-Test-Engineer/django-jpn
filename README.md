@@ -1,3 +1,3 @@
-# Django Congress Japan Feb 2025
+# DjangoCongress JP 2025
 
 ## Repo for talk
