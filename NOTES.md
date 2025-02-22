@@ -102,7 +102,7 @@ This is the main focus of the talk - **demystify and simplify** - and this will 
 
 With that in mind, we don't need to fully grasp the code this time around. 
 
-It is more about see the high level view and once can dig deeper into the code offline.
+It is more about seeing the high level view and once can dig deeper into the code offline.
 
 *Look at the patterns and structure rather than the code details* - it is what helped me get to grips with this new paradigm.
 
