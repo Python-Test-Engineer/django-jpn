@@ -317,7 +317,6 @@ I bring this up again as I came across this extraction pattern in an example of 
 
 Examples show this for data pipelines, however, if it were part of an invoicing process one would more likely have the information stored rather than in a prepared document.
 
-
 # 4 main patterns
 
 Andrew Ng describes four main patterns
@@ -329,6 +328,8 @@ https://www.deeplearning.ai/the-batch/how-agents-can-improve-llm-performance/
 We have seen examples of these in this talk, bar a multi-agent pattern.
 
 ## REFLECTION PATTERN
+
+![REFLECTION](./INPUT_OUTPUT.png)
 
 input -> function(input) -> output -> function(output) -> output2
 
@@ -355,6 +356,10 @@ A powerful pattern is the ReAct (Reason-Act) pattern.
 This can be viewed of as Multi-Step. Let's go through the code.
 
 To get a sense of how it works, look at `20_planning_agent_w_loop.py` as we can get a high level overview of the code, whereas `20_planning_agent_no_loop.ipynb` needs more of a walk through.
+
+# When might we use LLMs/Agents?
+
+![open-ai](./WHEN.png)
 
 ## MULTI AGENT
 
