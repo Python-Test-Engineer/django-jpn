@@ -10,7 +10,7 @@ console = Console()
 load_dotenv(find_dotenv())
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-console.print(f"[dark_orange]OPENAI_API_KEY: {OPENAI_API_KEY}[/]")
+console.print(f"[dark_orange]OPENAI_API_KEY: {OPENAI_API_KEY[:14]}...[/]")
 
 
 # We add in our own system message

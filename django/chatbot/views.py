@@ -27,9 +27,9 @@ load_dotenv(find_dotenv())
 
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 GROQ_API_KEY = os.getenv("GROQ_API_KEY")
-console.print(f"[dark_orange]OPENAI_API_KEY: {OPENAI_API_KEY}[/]")
+console.print(f"[dark_orange]OPENAI_API_KEY: {OPENAI_API_KEY[:14]}...[/]")
 print()
-console.print(f"[cyan]GROQ_API_KEY: {GROQ_API_KEY}[/cyan]")
+console.print(f"[cyan]GROQ_API_KEY: {GROQ_API_KEY[:14]}...[/cyan]")
 
 # We add in our own system message
 system_message = "You are a helpful assistant for a shoe store. If a user asks a question please be as helpful as possible and use a courteous and professional manner. You are provided with the following facts to help you. Please be verbose and suggestive."
