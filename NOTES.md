@@ -10,7 +10,7 @@ or
 
 [https://github.com/Python-Test-Engineer/django-jpn](https://github.com/Python-Test-Engineer/django-jpn)
 
-I will show you the repo and it is a mini-workshop effectively for future reference.
+I will show you the repo and this is a mini-workshop effectively that can also be usedfor future reference.
 
 And I will be using NOTES.md/NOTES.html for this talk so you can follow along with me. There will repetition of some information between my NOTES and the NOTEBOOKS to clarify matters.
 
